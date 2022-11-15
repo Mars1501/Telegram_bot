@@ -1,0 +1,24 @@
+from aiogram.utils import executor
+from creaty_bot import dp
+
+
+async def on_startup(_):
+    print('Бот успешно запущен!')
+
+
+from handlers import calc_eval, calc, calc_eval, client, konfeta, krest_null, notebook, parser_curr, weather, other
+
+calc_eval.register_handlers_calc_eval(dp)
+calc.register_handlers_calc(dp)
+client.register_handlers_client(dp)  
+konfeta.register_handlers_konfeta(dp)
+krest_null.register_handlers_krest_null(dp)
+notebook.register_handlers_notebook(dp)
+parser_curr.register_handlers_parser_curr(dp)
+weather.register_handlers_weather(dp)
+# other.register_handlers_other(dp) # Этот хендлер должен быть всегда последним!!!
+
+
+
+
+executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
